@@ -92,7 +92,7 @@ a{color:inherit;text-decoration:none}
 .brand img{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 6px 20px rgba(214,194,121,.25))}
 .logo{font-family:"Cormorant Garamond",serif;font-weight:700;letter-spacing:.3px;color:var(--gold)}
 .nav-links{display:flex;align-items:center;gap:10px}
-.nav-link{padding:10px 12px;border-radius:10px;position:relative}
+.nav-link{padding:10px 12px;border-radius:10px;position:relative;flex:none}
 .nav-link.underline::after{content:"";position:absolute;left:12px;right:calc(100% - 12px);bottom:6px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:2px;transition:all .35s var(--ease);opacity:.9}
 .nav-link:hover.underline::after,.nav-link.active.underline::after{right:12px}
 
@@ -233,29 +233,43 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
 /* Paw Trail */
 #pawTrail{position:fixed;inset:0;pointer-events:none;z-index:9400;opacity:.85}
 
+/* ======== Tablet ======== */
+@media (min-width:821px) and (max-width:1199px){
+  .wrap{max-width:980px;padding:0 18px}
+  :root{ --belt:24px }
+  .nav-inner{height:60px}
+  .layer-paw{width:min(22vw,200px)}
+  .layer-ring{width:min(18vw,160px)}
+}
+
+/* ======== Mobile ======== */
+@media (max-width:820px){
+  :root{
+    --belt:22px;
+    /* leve boost nas cores no mobile */
+    --text:#f3f3f3; --muted:#d6d6d6;
+    --gold:#e5d489; --gold-2:#d2c279;
+  }
+  .wrap{max-width:680px;padding:0 14px}
+  .nav-inner{height:56px}
+  .nav-links{overflow-x:auto;gap:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-link{scroll-snap-align:center;padding:8px 10px}
+  header.hero{min-height:100svh} /* altura certa com barra do navegador */
+  .hero-overlay{background:linear-gradient(180deg,rgba(14,14,14,.68) 0%,rgba(14,14,14,.62) 55%,rgba(14,14,14,.58) 100%);}
+  .hero-media img{filter:grayscale(.06) brightness(.9) contrast(1.08)}
+  .title{font-size:clamp(30px,9vw,44px)}
+  .subtitle{font-size:clamp(15px,4.2vw,19px);max-width:700px}
+  .lottie-corner{right:12px;bottom:12px}
+  .steps-grid{gap:14px}
+  .step{padding:16px}
+  .htrack{padding:18px}
+  .hstep{min-width:260px}
+  .emoji-belt{height:20px}
+}
+
 /* Redução de movimento */
 @media (prefers-reduced-motion:reduce){ .emoji-track{animation:none} .cursor{display:none} }
-
-/* ===== Mobile: mesma aparência, sem animações/peso ===== */
-@media (max-width: 820px){
-  :root{ --belt:24px; }
-  .wrap{ padding:0 14px; }
-  .nav-inner{ height:60px; }
-  .nav-links{
-    gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
-    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-  }
-  .nav-links::-webkit-scrollbar{ display:none }
-  .nav-link{ flex:0 0 auto }
-  .emoji-track, .layer-ring, .price-chip, .price-chip::before { animation: none !important; }
-  .btn:hover, .step:hover, .icon-card:hover{ transform: none !important; }
-  .table.enter::after{ display:none }
-  .cursor{ display:none !important; }
-  .hero-inner{ padding:72px 16px }
-  .divider{ height:44px }
-  .section{ padding:72px 0 }
-}
 </style>
 </head>
 <body>
@@ -497,16 +511,24 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <script>
-/* ======== DETECÇÃO: PC idêntico / Mobile sem pesos ======== */
+/* ======== DETECÇÃO: PC idêntico / Mobile e Tablet com travas ======== */
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints>0;
-const isSmall = Math.min(window.innerWidth, window.innerHeight) <= 820; // tablets/phone
-const IS_MOBILE = isTouch || isSmall; // <- chave
-window.Env = { IS_MOBILE, prefersReduced };
+const vw = Math.min(window.innerWidth, window.innerHeight);
+const IS_MOBILE = vw <= 820 || isTouch && screen.width <= 820;
+const IS_TABLET = !IS_MOBILE && Math.min(window.innerWidth, window.innerHeight) <= 1199;
+window.Env = { IS_MOBILE, IS_TABLET, prefersReduced };
+
+/* Trava viewport em mobile/tablet (sem zoom-out) */
+(function lockViewport(){
+  if(!IS_MOBILE && !IS_TABLET) return;
+  const vp = document.querySelector('meta[name="viewport"]');
+  if(vp) vp.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover');
+})();
 
 /* Smooth scroll: PC só; no mobile usa nativo */
 let lenis = null;
-if (!IS_MOBILE) {
+if (!IS_MOBILE && !IS_TABLET) {
   lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1.05 });
   function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
@@ -530,7 +552,7 @@ document.addEventListener('scroll', updateBars, {passive:true}); updateBars();
 /* Cursor custom: desliga em touch/reduced */
 (() => {
   const cursor = document.getElementById('cursor');
-  if(prefersReduced || IS_MOBILE){ cursor.style.display='none'; return; }
+  if(prefersReduced || IS_MOBILE || IS_TABLET){ cursor.style.display='none'; return; }
   window.addEventListener('mousemove',(e)=>{ cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; },{passive:true});
   const bigger = (on)=> cursor.classList.toggle('big', on);
   ['a','.btn','.magnetic','.nav-link','.icon-card','.step','.m-item','.hstep'].forEach(sel=>{
@@ -545,27 +567,25 @@ document.addEventListener('scroll', updateBars, {passive:true}); updateBars();
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin, Flip, CustomEase);
 CustomEase.create("soft","0.25,0.8,0.25,1");
 
-/* Hero split — desktop anima; celular só exibe */
-if (!IS_MOBILE && !prefersReduced) {
-  const splitTitle = new SplitType('#titleSplit', {types:'chars'});
-  const splitSub = new SplitType('#subSplit', {types:'words'});
-  gsap.set(splitTitle.chars, {opacity:0, y:40, rotateX:25, transformOrigin:'50% 100%'});
-  gsap.set(splitSub.words,  {opacity:0, y:18});
-  gsap.timeline({defaults:{ease:"soft"}})
-    .to(splitTitle.chars, {opacity:1, y:0, rotateX:0, stagger:{each:0.02, from:"center"}, duration:1.0}, 0)
-    .to(splitSub.words,  {opacity:1, y:0, stagger:0.03, duration:.7}, .15)
-    .from('.price-chip', {scale:.9, opacity:0, duration:.5, ease:"back.out(1.8)"}, .35)
-    .from('.cta-row .btn', {y:18, opacity:0, stagger:.08, duration:.55}, .45);
-} else {
-  document.querySelectorAll('.reveal').forEach(el=>{ el.style.opacity=1; el.style.transform='none'; });
-}
+/* Hero split (leve) — mantido em todos */
+const splitTitle = new SplitType('#titleSplit', {types:'chars'});
+const splitSub = new SplitType('#subSplit', {types:'words'});
+gsap.set(splitTitle.chars, {opacity:0, y:40, rotateX:25, transformOrigin:'50% 100%'});
+gsap.set(splitSub.words,  {opacity:0, y:18});
+gsap.timeline({defaults:{ease:"soft"}})
+  .to(splitTitle.chars, {opacity:1, y:0, rotateX:0, stagger:{each:0.02, from:"center"}, duration:1.0}, 0)
+  .to(splitSub.words,  {opacity:1, y:0, stagger:0.03, duration:.7}, .15)
+  .from('.price-chip', {scale:.9, opacity:0, duration:.5, ease:"back.out(1.8)"}, .35)
+  .from('.cta-row .btn', {y:18, opacity:0, stagger:.08, duration:.55}, .45);
 
-/* Reveals globais: PC com animação; Mobile: mostra direto (sem custo) */
-if (!IS_MOBILE && !prefersReduced) {
+/* Reveals globais: PC com animação; Mobile/Tablet: mostra direto */
+if (!IS_MOBILE && !IS_TABLET && !prefersReduced) {
   gsap.utils.toArray('.reveal').forEach((el,i)=>{
     gsap.fromTo(el,{y:22,opacity:0},{y:0,opacity:1,duration:.7,delay:(i%5)*0.03,ease:"power2.out",
       scrollTrigger:{trigger:el,start:"top 85%"}});
   });
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>{ el.style.opacity=1; el.style.transform='none'; });
 }
 
 /* Active link na nav (leve) */
@@ -585,7 +605,7 @@ ids.forEach(id=>{
 
 /* Parallax + ring speed-up: só no PC */
 (() => {
-  if (IS_MOBILE || prefersReduced) return;
+  if (IS_MOBILE || IS_TABLET || prefersReduced) return;
   const media = document.querySelector('.hero-media');
   const paw   = document.querySelector('.layer-paw');
   const ring  = document.querySelector('.layer-ring');
@@ -635,7 +655,7 @@ document.querySelectorAll('.btn').forEach(btn=>{
     r.style.top  = (e.clientY - rect.top  - size/2)+'px';
     btn.appendChild(r);
     setTimeout(()=>r.remove(), 600);
-    if (!IS_MOBILE) {
+    if (!IS_MOBILE && !IS_TABLET) {
       new mojs.Burst({ left: e.pageX, top: e.pageY, radius: {20:80}, count:12,
         children:{shape:'circle', fill:'#d6c279', duration:700, easing:'quad.out'} }).replay();
     }
@@ -649,11 +669,11 @@ document.querySelectorAll('.btn').forEach(btn=>{
   ScrollTrigger.create({ trigger: method, start:"top 70%", once:true, onEnter:()=> method.classList.add('draw') });
 })();
 
-/* Timeline horizontal: PC pin; mobile vira scroll horizontal simples (mesma aparência) */
+/* Timeline horizontal: PC pin; mobile/tablet vira scroll horizontal simples */
 (() => {
   const pin = document.getElementById('hpin');
   const track = document.getElementById('htrack');
-  if (IS_MOBILE) { pin.style.overflowX='auto'; return; }
+  if (IS_MOBILE || IS_TABLET) { pin.style.overflowX='auto'; pin.style.scrollSnapType='x proximity'; track.querySelectorAll('.hstep').forEach(s=>s.style.scrollSnapAlign='start'); return; }
   const steps = gsap.utils.toArray('.hstep');
   function totalX(){ return track.scrollWidth - pin.clientWidth; }
   const st = ScrollTrigger.create({
@@ -711,7 +731,7 @@ document.querySelectorAll('.btn').forEach(btn=>{
 
 /* Paw Trail: só no PC */
 (() => {
-  if(prefersReduced || IS_MOBILE) return;
+  if(prefersReduced || IS_MOBILE || IS_TABLET) return;
   const cvs = document.getElementById('pawTrail'); const ctx = cvs.getContext('2d');
   function resize(){ cvs.width = innerWidth; cvs.height = innerHeight; } addEventListener('resize', resize); resize();
   let particles = []; let last = 0; let mx=0,my=0; addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; spawn(3); }, {passive:true});
@@ -727,7 +747,7 @@ document.querySelectorAll('.btn').forEach(btn=>{
 })();
 
 /* tsParticles — só no PC */
-if (!window.Env.IS_MOBILE && !prefersReduced && window.tsParticles) {
+if (!window.Env.IS_MOBILE && !window.Env.IS_TABLET && !prefersReduced && window.tsParticles) {
   tsParticles.load({
     id: "tpaw",
     options: {
@@ -756,7 +776,7 @@ if (!window.Env.IS_MOBILE && !prefersReduced && window.tsParticles) {
     orbit.style.left   = (r.left - wr.left - pad/2)+'px'; orbit.style.top = (r.top - wr.top - pad/2)+'px';
   }
   placeOrbit(); addEventListener('resize', placeOrbit);
-  if (IS_MOBILE || prefersReduced) return;
+  if (IS_MOBILE || IS_TABLET || prefersReduced) return;
   let lastBurst = performance.now();
   function bursts(ts){
     if(ts - lastBurst > 2000){
@@ -770,23 +790,20 @@ if (!window.Env.IS_MOBILE && !prefersReduced && window.tsParticles) {
 })();
 </script>
 
-<!-- ===== THREE.JS (com pós) — desktop somente; celular não carrega módulos ===== -->
+<!-- ===== THREE.JS (com pós) — apenas no PC; no celular/tablet não inicia ===== -->
 <script type="module">
-if (!window.Env?.IS_MOBILE) {
-  const [{ EffectComposer }, { RenderPass }, { UnrealBloomPass }, { ShaderPass }, { FXAAShader }, { RGBShiftShader }, { VignetteShader }] =
-    await Promise.all([
-      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/EffectComposer.js"),
-      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/RenderPass.js"),
-      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/UnrealBloomPass.js"),
-      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/ShaderPass.js"),
-      import("https://unpkg.com/three@0.152.2/examples/jsm/shaders/FXAAShader.js"),
-      import("https://unpkg.com/three@0.152.2/examples/jsm/shaders/RGBShiftShader.js"),
-      import("https://unpkg.com/three@0.152.2/examples/jsm/shaders/VignetteShader.js"),
-    ]);
+import { EffectComposer }   from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass }       from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass }  from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { ShaderPass }       from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/ShaderPass.js";
+import { FXAAShader }       from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/FXAAShader.js";
+import { RGBShiftShader }   from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/RGBShiftShader.js";
+import { VignetteShader }   from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/VignetteShader.js";
 
-  const THREE = window.THREE;
-  const canvas = document.getElementById('bg3d');
-
+const { IS_MOBILE, IS_TABLET } = window.Env || {};
+const canvas = document.getElementById('bg3d');
+if (IS_MOBILE || IS_TABLET) { canvas?.remove(); /* mesma aparência estática no hero */ }
+else {
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 2000);
   camera.position.set(0, 6, 38);
@@ -880,9 +897,6 @@ if (!window.Env?.IS_MOBILE) {
     requestAnimationFrame(animate);
   }
   requestAnimationFrame(animate);
-} else {
-  // celular: mantém aparência estática e remove o canvas 3D
-  document.getElementById('bg3d')?.remove();
 }
 </script>
 </body>
