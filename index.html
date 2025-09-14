@@ -52,7 +52,6 @@
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
 <style>
-/* ========================= Design System (IDENTIDADE PRESERVADA) ========================= */
 :root{
   --bg:#0e0e0e; --panel:#151515; --text:#ececec; --muted:#b8b8b8;
   --gold:#d6c279; --gold-2:#bcae6a; --shadow:0 12px 36px rgba(214,194,121,.20);
@@ -66,28 +65,27 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1144px;margin:0 auto;padding:0 20px}
 
-/* ========================= Progress (topo) + CTA radial ========================= */
+/* Progress + CTA radial */
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),#ffffff55);z-index:9000;transform-origin:left}
 .radial{--p:0deg; position:relative}
 .radial::after{
   content:""; position:absolute; inset:-6px; border-radius:999px;
   background:conic-gradient(var(--gold) var(--p), #ffffff22 0);
-  -webkit-mask: radial-gradient(circle, transparent 0 66%, #000 67% 100%);
-          mask: radial-gradient(circle, transparent 0 66%, #000 67% 100%);
+  -webkit-mask: radial-gradient(circle, transparent 0 66%, #000 67% 100%); mask: radial-gradient(circle, transparent 0 66%, #000 67% 100%);
   transition:--p .2s linear;
 }
 
-/* ========================= Emoji belt ========================= */
+/* Emoji belt */
 .emoji-belt{position:fixed;top:0;left:0;right:0;height:var(--belt);z-index:8900;background:linear-gradient(180deg,#0f0f0f,rgba(15,15,15,.7));border-bottom:1px solid #ffffff12;pointer-events:none;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .emoji-track{white-space:nowrap;display:inline-block;opacity:.55;font-size:16px;line-height:var(--belt);animation:marquee 38s linear infinite}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.emoji-track{animation:none}}
 
-/* ========================= Cursor ========================= */
+/* Cursor */
 .cursor{position:fixed;left:0;top:0;width:14px;height:14px;border:2px solid rgba(214,194,121,.85);border-radius:50%;pointer-events:none;z-index:9500;transform:translate(-50%,-50%);mix-blend-mode:exclusion;opacity:.9;transition:transform .15s var(--ease),width .25s var(--ease),height .25s var(--ease),opacity .25s var(--ease)}
 .cursor.big{width:34px;height:34px}
 
-/* ========================= Navbar (MESMA ESTRUTURA) ========================= */
+/* Navbar */
 .nav{position:sticky;top:var(--belt);z-index:8800;background:rgba(18,18,18,.55);backdrop-filter:blur(8px) saturate(140%);border-bottom:1px solid #ffffff22}
 .nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:12px}
@@ -98,7 +96,7 @@ a{color:inherit;text-decoration:none}
 .nav-link.underline::after{content:"";position:absolute;left:12px;right:calc(100% - 12px);bottom:6px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:2px;transition:all .35s var(--ease);opacity:.9}
 .nav-link:hover.underline::after,.nav-link.active.underline::after{right:12px}
 
-/* ========================= Botões ========================= */
+/* Botões */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:999px;border:1px solid #ffffff24;font-weight:700;cursor:pointer;position:relative;overflow:hidden;transition:transform .18s var(--ease),box-shadow .28s var(--ease),background .28s var(--ease),filter .28s var(--ease)}
 .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .cta-primary{background:linear-gradient(135deg,var(--gold),#e8dca8);color:#161616;box-shadow:0 18px 48px rgba(214,194,121,.48)}
@@ -112,7 +110,7 @@ a{color:inherit;text-decoration:none}
 .btn::before{content:"";position:absolute;inset:-2px;border-radius:999px;background:radial-gradient(300px 120px at var(--mx,50%) var(--my,50%),rgba(214,194,121,.22),transparent 64%);opacity:0;transition:opacity .25s var(--ease)}
 .btn:hover::before{opacity:1}
 
-/* ========================= Hero (camadas + 3D) ========================= */
+/* Hero */
 header.hero{position:relative;min-height:100vh;display:grid;place-items:center;overflow:hidden}
 .hero-overlay{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.88) 0%,rgba(14,14,14,.72) 55%,rgba(14,14,14,.66) 100%);z-index:2}
 #bg3d{position:absolute;inset:0;z-index:1;pointer-events:none}
@@ -128,15 +126,9 @@ header.hero{position:relative;min-height:100vh;display:grid;place-items:center;o
 .title{font-family:"Cormorant Garamond",serif;font-weight:700;line-height:1.04;font-size:clamp(40px,8vw,84px);color:var(--gold);text-shadow:0 2px 12px rgba(214,194,121,.18);margin:0 0 8px}
 .subtitle{font-size:clamp(16px,2.2vw,24px);opacity:.96;margin:0 auto 12px;max-width:900px}
 
-/* CHIP com GLOW ORBITAL */
+/* CHIP */
 .price-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid #ffffff22;background:rgba(255,255,255,.06);color:var(--gold);margin-top:8px;position:relative;overflow:hidden;box-shadow:0 0 0 0 rgba(214,194,121,.0)}
-.price-chip::before{
-  content:"";position:absolute;inset:-6px;border-radius:inherit;
-  background:conic-gradient(from 0deg, rgba(214,194,121,.0) 0deg, rgba(214,194,121,.55) 90deg, rgba(214,194,121,.0) 180deg, rgba(214,194,121,.55) 270deg, rgba(214,194,121,.0) 360deg);
-  -webkit-mask: radial-gradient(circle, transparent 0 64%, #000 65% 100%); mask: radial-gradient(circle, transparent 0 64%, #000 65% 100%);
-  animation:orbitGlow 3.6s linear infinite;
-  filter:blur(1px);
-}
+.price-chip::before{content:"";position:absolute;inset:-6px;border-radius:inherit;background:conic-gradient(from 0deg, rgba(214,194,121,.0) 0deg, rgba(214,194,121,.55) 90deg, rgba(214,194,121,.0) 180deg, rgba(214,194,121,.55) 270deg, rgba(214,194,121,.0) 360deg);-webkit-mask: radial-gradient(circle, transparent 0 64%, #000 65% 100%);mask: radial-gradient(circle, transparent 0 64%, #000 65% 100%);animation:orbitGlow 3.6s linear infinite;filter:blur(1px)}
 @keyframes orbitGlow{to{transform:rotate(360deg)}}
 .price-chip.shimmer::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.18) 20%,transparent 40%);transform:translateX(-120%);animation:shine 3s ease forwards}
 @keyframes shine{to{transform:translateX(120%)}}
@@ -146,11 +138,11 @@ header.hero{position:relative;min-height:100vh;display:grid;place-items:center;o
 .cta-row{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .lottie-corner{position:absolute;right:22px;bottom:22px;z-index:5;opacity:.95}
 
-/* Separadores suaves entre seções */
+/* Separadores */
 .divider{display:block;width:100%;height:60px}
 .divider svg{width:100%;height:100%;display:block}
 
-/* ========================= Seções (MESMA ESTRUTURA) ========================= */
+/* Seções */
 .section{padding:100px 0;background:var(--bg);position:relative}
 .section.alt{background:#121212}
 .h2{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:clamp(28px,4.5vw,44px);color:var(--gold);margin:0 0 16px;text-align:center}
@@ -190,7 +182,7 @@ header.hero{position:relative;min-height:100vh;display:grid;place-items:center;o
 .m-item:hover .m-ico{transform:rotate(-4deg) translateY(-2px);filter:drop-shadow(0 8px 22px rgba(214,194,121,.35))}
 .m-item strong{display:block;margin-bottom:4px}
 
-/* Timeline Horizontal pinada */
+/* Timeline Horizontal */
 .hwrap{margin-top:42px;position:relative}
 .hpin{position:relative;overflow:hidden;border:1px solid #ffffff22;border-radius:var(--radius);background:linear-gradient(180deg,#151515,#121212)}
 .htrack{display:flex;gap:24px;padding:28px;min-width:max-content}
@@ -206,40 +198,20 @@ header.hero{position:relative;min-height:100vh;display:grid;place-items:center;o
 .icon-card:hover{transform:translateY(-3px)}
 .icon-card svg{width:28px;height:28px;flex:none;filter:drop-shadow(0 4px 12px rgba(214,194,121,.18))}
 
-/* ===== FAQ / Preço (AJUSTES CRÍTICOS) ===== */
+/* FAQ / Preço */
 .faq{max-width:920px;margin:0 auto}
 .faq-item{border-top:1px solid #ffffff22;padding:16px 0;position:relative}
 .faq-q{font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;user-select:none}
 .faq-q .plus{display:inline-block;transition:transform .35s var(--ease)}
-/* -> CRÍTICO: sem max-height; usamos height com GSAP */
-.faq-a{
-  color:#d6d7db; height:0; overflow:hidden; opacity:0;
-  filter:blur(6px);
-  clip-path: inset(0 0 100% 0); /* fecha “janela” vertical */
-  will-change: height, opacity, filter, clip-path, transform;
-}
-.faq-item.open .faq-q .plus{transform:rotate(45deg)} /* vira “–” */
-
-/* Tabela de preço com "janela" cinematográfica na entrada */
-.table{
-  width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:var(--radius); border:1px solid #ffffff22;
-  /* estado inicial para animação de “janela” */
-  opacity:0; transform:translateY(24px) scale(.98);
-  clip-path: inset(0 0 14% 0 round var(--radius));
-  box-shadow: 0 0 0 rgba(214,194,121,0);
-}
+.faq-a{color:#d6d7db; height:0; overflow:hidden; opacity:0; filter:blur(6px); clip-path: inset(0 0 100% 0); will-change: height, opacity, filter, clip-path, transform;}
+.faq-item.open .faq-q .plus{transform:rotate(45deg)}
+.table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:var(--radius); border:1px solid #ffffff22; opacity:0; transform:translateY(24px) scale(.98); clip-path: inset(0 0 14% 0 round var(--radius)); box-shadow: 0 0 0 rgba(214,194,121,0)}
 .table th,.table td{padding:14px 16px;text-align:left}
 .table thead th{background:#151515;color:#dcdcdc}
 .table tbody tr:nth-child(even){background:#131313}
-.table.enter{ /* estado final + brilho */ 
-  box-shadow:0 28px 120px rgba(214,194,121,.18);
-}
-.table::after{ /* sweep highlight */
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.14) 20%,transparent 40%);
-  transform:translateX(-120%); opacity:0;
-}
-.table.enter::after{ animation:shine 1.2s ease .4s forwards; opacity:1; }
+.table.enter{box-shadow:0 28px 120px rgba(214,194,121,.18)}
+.table::after{content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.14) 20%,transparent 40%); transform:translateX(-120%); opacity:0}
+.table.enter::after{animation:shine 1.2s ease .4s forwards; opacity:1}
 .note{color:#bfc1c8;font-size:.95rem;margin-top:10px;text-align:center; opacity:0; transform:translateY(14px)}
 
 /* CTA faixa */
@@ -255,39 +227,30 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
 .foot small{color:#c9cbd2}
 .foot-bottom{text-align:center;border-top:1px solid #ffffff22;padding:16px}
 
-/* Reveals (GSAP vai sobrescrever) */
+/* Reveals */
 .reveal{opacity:0;transform:translateY(22px)}
 
-/* Paw Trail canvas */
+/* Paw Trail */
 #pawTrail{position:fixed;inset:0;pointer-events:none;z-index:9400;opacity:.85}
 
 /* Redução de movimento */
-@media (prefers-reduced-motion:reduce){
-  .emoji-track{animation:none}
-  .cursor{display:none}
-}
+@media (prefers-reduced-motion:reduce){ .emoji-track{animation:none} .cursor{display:none} }
 </style>
 </head>
 <body>
 
-<!-- Progress -->
 <div class="progress" id="progress"></div>
-
-<!-- Paw trail (micro partículas 2D no cursor) -->
 <canvas id="pawTrail"></canvas>
 
-<!-- Emoji belt -->
 <div class="emoji-belt" aria-hidden="true">
   <div class="emoji-track">
     &nbsp;🐕 🐾 🦴 🌿 &nbsp;🐕 🐾 🦴 🌿 &nbsp;🐕 🐾 🦴 🌿 &nbsp;🐕 🐾 🦴 🌿 &nbsp;🐕 🐾 🦴 🌿 &nbsp;🐕 🐾 🦴 🌿
   </div>
 </div>
 
-<!-- Navbar (MESMA) -->
 <nav class="nav" aria-label="Navegação principal">
   <div class="wrap nav-inner">
     <div class="brand">
-      <!-- LOGO VISÍVEL -->
       <img src="assets/logo/psique-patinhas.png" alt="Logo Psiquê Patinhas" onerror="this.style.display='none'">
       <div class="logo">Psiquê Patinhas</div>
     </div>
@@ -298,15 +261,13 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
       <a class="nav-link underline" href="#metodologia">Metodologia</a>
       <a class="nav-link underline" href="#faq">FAQ</a>
       <a class="nav-link underline" href="#preco">Preço</a>
-      <a class="btn cta-primary nav-link magnetic radial"
-         id="whats-cta"
+      <a class="btn cta-primary nav-link magnetic radial" id="whats-cta"
          href="https://wa.me/5514996649899?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20a%20consulta%20comportamental%20da%20Psiqu%C3%AA%20Patinhas."
          target="_blank" aria-label="Iniciar consulta pelo WhatsApp">WhatsApp</a>
     </div>
   </div>
 </nav>
 
-<!-- Hero (camadas + 3D) -->
 <header id="inicio" class="hero">
   <canvas id="bg3d"></canvas>
   <div id="tpaw"></div>
@@ -315,7 +276,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
 
-  <!-- camadas decorativas (parallax) -->
   <img class="hero-layer layer-paw" src="assets/logo/psique-patinhas.png" alt="" onerror="this.style.display='none'">
   <svg class="hero-layer layer-ring" viewBox="0 0 120 120" fill="none" aria-hidden="true">
     <circle cx="60" cy="60" r="52" stroke="url(#gg)" stroke-width="3" opacity=".95"/>
@@ -339,12 +299,10 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
 </header>
 
-<!-- separador -->
 <div class="divider" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C300,120 1140,0 1440,60 L1440,100 L0,100 Z" fill="#121212" opacity=".85"/></svg>
 </div>
 
-<!-- A Consulta -->
 <section id="consulta" class="section alt">
   <div class="wrap">
     <h2 class="h2 reveal">A Consulta / Como Funciona</h2>
@@ -370,17 +328,14 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
 </section>
 
-<!-- separador -->
 <div class="divider" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C300,120 1140,0 1440,60 L1440,100 L0,100 Z" fill="#0e0e0e" opacity=".85"/></svg>
 </div>
 
-<!-- Filosofia (com cão orbitando) -->
 <section id="filosofia" class="section">
   <div class="wrap">
     <h2 class="h2 reveal">Nossa Filosofia</h2>
 
-    <!-- Orbita do cachorro (injetamos via JS dimensões) -->
     <div class="dog-orbit" id="dogOrbit" aria-hidden="true" style="display:none">
       <img src="assets/pets/dog.png" alt="">
     </div>
@@ -393,12 +348,10 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
 </section>
 
-<!-- separador -->
 <div class="divider" aria-hidden="true">
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C300,120 1140,0 1440,60 L1440,100 L0,100 Z" fill="#121212" opacity=".85"/></svg>
 </div>
 
-<!-- Metodologia -->
 <section id="metodologia" class="section alt">
   <div class="wrap">
     <h2 class="h2 reveal">Metodologia</h2>
@@ -416,7 +369,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
       </svg>
     </div>
 
-    <!-- Timeline horizontal -->
     <div class="hwrap">
       <div class="hpin" id="hpin">
         <div class="hline" aria-hidden="true"></div>
@@ -430,7 +382,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
       </div>
     </div>
 
-    <!-- Mini-ícones -->
     <div class="icons">
       <div class="icon-card tilt reveal magnetic" aria-label="Acesso Imediato">
         <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 12-16h-8l1-4z" stroke="url(#g1)" stroke-width="1.6"/><defs><linearGradient id="g1" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#d6c279"/><stop offset="1" stop-color="#bcae6a"/></linearGradient></defs></svg>
@@ -446,7 +397,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
       </div>
     </div>
 
-    <!-- CTA -->
     <div class="cta-band reveal">
       <div class="row">
         <h3>Pronto para começar? Fale agora com um especialista.</h3>
@@ -458,7 +408,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq" class="section">
   <div class="wrap">
     <h2 class="h2 reveal">Perguntas Frequentes</h2>
@@ -483,7 +432,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
 </section>
 
-<!-- Preço -->
 <section id="preco" class="section alt">
   <div class="wrap">
     <h2 class="h2 reveal">Transparência &amp; Preço</h2>
@@ -499,7 +447,6 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   </div>
 </section>
 
-<!-- Footer -->
 <footer id="contato">
   <div class="wrap foot">
     <div>
@@ -526,20 +473,28 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
   <div class="foot-bottom"><small>© 2025 Psiquê Patinhas — Todos os direitos reservados.</small></div>
 </footer>
 
-<!-- Cursor custom -->
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <script>
-/* ====================== Setup base ====================== */
+/* ======== DETECÇÃO: PC idêntico / Mobile sem pesos ======== */
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints>0;
+const isSmall = Math.min(window.innerWidth, window.innerHeight) <= 820; // tablets/phone
+const IS_MOBILE = isTouch || isSmall; // <- chave
+window.Env = { IS_MOBILE, prefersReduced };
 
-/* Smooth scroll com Lenis */
-const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1.05 });
-function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-lenis.on('scroll', () => { ScrollTrigger.update(); });
+/* Smooth scroll: PC só; no mobile usa nativo */
+let lenis = null;
+if (!IS_MOBILE) {
+  lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1.05 });
+  function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  lenis.on('scroll', () => { ScrollTrigger.update(); });
+} else {
+  addEventListener('scroll', () => ScrollTrigger.update(), {passive:true});
+}
 
-/* Progress + anéis radiais nos CTAs */
+/* Progress + anéis radiais */
 const progress = document.getElementById('progress');
 const radialTargets = document.querySelectorAll('.radial');
 function updateBars(){
@@ -551,12 +506,10 @@ function updateBars(){
 }
 document.addEventListener('scroll', updateBars, {passive:true}); updateBars();
 
-/* Cursor custom */
+/* Cursor custom: desliga em touch/reduced */
 (() => {
   const cursor = document.getElementById('cursor');
-  if(prefersReduced) { cursor.style.display='none'; return; }
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints>0;
-  if(isTouch){ cursor.style.display='none'; return; }
+  if(prefersReduced || IS_MOBILE){ cursor.style.display='none'; return; }
   window.addEventListener('mousemove',(e)=>{ cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; },{passive:true});
   const bigger = (on)=> cursor.classList.toggle('big', on);
   ['a','.btn','.magnetic','.nav-link','.icon-card','.step','.m-item','.hstep'].forEach(sel=>{
@@ -571,7 +524,7 @@ document.addEventListener('scroll', updateBars, {passive:true}); updateBars();
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin, Flip, CustomEase);
 CustomEase.create("soft","0.25,0.8,0.25,1");
 
-/* SplitType para o hero */
+/* Hero split (leve) — mantido em todos */
 const splitTitle = new SplitType('#titleSplit', {types:'chars'});
 const splitSub = new SplitType('#subSplit', {types:'words'});
 gsap.set(splitTitle.chars, {opacity:0, y:40, rotateX:25, transformOrigin:'50% 100%'});
@@ -582,13 +535,17 @@ gsap.timeline({defaults:{ease:"soft"}})
   .from('.price-chip', {scale:.9, opacity:0, duration:.5, ease:"back.out(1.8)"}, .35)
   .from('.cta-row .btn', {y:18, opacity:0, stagger:.08, duration:.55}, .45);
 
-/* Reveals globais */
-gsap.utils.toArray('.reveal').forEach((el,i)=>{
-  gsap.fromTo(el,{y:22,opacity:0},{y:0,opacity:1,duration:.7,delay:(i%5)*0.03,ease:"power2.out",
-    scrollTrigger:{trigger:el,start:"top 85%"}})
-});
+/* Reveals globais: PC com animação; Mobile: mostra direto (sem custo) */
+if (!IS_MOBILE && !prefersReduced) {
+  gsap.utils.toArray('.reveal').forEach((el,i)=>{
+    gsap.fromTo(el,{y:22,opacity:0},{y:0,opacity:1,duration:.7,delay:(i%5)*0.03,ease:"power2.out",
+      scrollTrigger:{trigger:el,start:"top 85%"}});
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>{ el.style.opacity=1; el.style.transform='none'; });
+}
 
-/* Active link na nav */
+/* Active link na nav (leve) */
 const ids = ['inicio','consulta','filosofia','metodologia','faq','preco','contato'];
 const links = gsap.utils.toArray('.nav-link[href^="#"]');
 ids.forEach(id=>{
@@ -603,8 +560,9 @@ ids.forEach(id=>{
   });
 });
 
-/* Parallax + ring speed-up */
+/* Parallax + ring speed-up: só no PC */
 (() => {
+  if (IS_MOBILE || prefersReduced) return;
   const media = document.querySelector('.hero-media');
   const paw   = document.querySelector('.layer-paw');
   const ring  = document.querySelector('.layer-ring');
@@ -616,17 +574,15 @@ ids.forEach(id=>{
   });
   function loop(){
     tx += (mx - tx)*.06; ty += (my - ty)*.06;
-    if(!prefersReduced){
-      media.style.transform = `translateY(${window.scrollY*0.12}px)`;
-      if(paw){  paw.style.transform  = `translate(${tx*18}px, ${ty*14}px) rotate(${tx*4}deg)`; }
-      if(ring){ ring.style.transform = `rotate(0.0001deg) translate(${tx*-16}px, ${ty*-10}px)`; }
-    }
+    media.style.transform = `translateY(${window.scrollY*0.12}px)`;
+    if(paw){  paw.style.transform  = `translate(${tx*18}px, ${ty*14}px) rotate(${tx*4}deg)`; }
+    if(ring){ ring.style.transform = `rotate(0.0001deg) translate(${tx*-16}px, ${ty*-10}px)`; }
     requestAnimationFrame(loop);
   }
   loop();
 })();
 
-/* Magnetic + ripple + bursts */
+/* Magnetic + ripple + bursts: bursts só no PC */
 document.querySelectorAll('.magnetic').forEach(el=>{
   const STR=24;
   el.addEventListener('mousemove', (e)=>{
@@ -656,22 +612,25 @@ document.querySelectorAll('.btn').forEach(btn=>{
     r.style.top  = (e.clientY - rect.top  - size/2)+'px';
     btn.appendChild(r);
     setTimeout(()=>r.remove(), 600);
-    new mojs.Burst({ left: e.pageX, top: e.pageY, radius: {20:80}, count:12,
-      children:{shape:'circle', fill:'#d6c279', duration:700, easing:'quad.out'} }).replay();
+    if (!IS_MOBILE) {
+      new mojs.Burst({ left: e.pageX, top: e.pageY, radius: {20:80}, count:12,
+        children:{shape:'circle', fill:'#d6c279', duration:700, easing:'quad.out'} }).replay();
+    }
     anime({targets:btn,scale:[.98,1],duration:320,easing:'easeOutElastic(1,.6)'});
   });
 });
 
-/* Metodologia: desenhar linha */
+/* Metodologia: desenhar linha — mantido em todos */
 (() => {
   const method = document.getElementById('method');
   ScrollTrigger.create({ trigger: method, start:"top 70%", once:true, onEnter:()=> method.classList.add('draw') });
 })();
 
-/* Timeline horizontal pinada */
+/* Timeline horizontal: PC pin; mobile vira scroll horizontal simples (mesma aparência) */
 (() => {
   const pin = document.getElementById('hpin');
   const track = document.getElementById('htrack');
+  if (IS_MOBILE) { pin.style.overflowX='auto'; return; }
   const steps = gsap.utils.toArray('.hstep');
   function totalX(){ return track.scrollWidth - pin.clientWidth; }
   const st = ScrollTrigger.create({
@@ -687,148 +646,100 @@ document.querySelectorAll('.btn').forEach(btn=>{
   addEventListener('resize', ()=>{ st.refresh(); });
 })();
 
-/* ===================== FAQ CINEMATOGRÁFICO (FIX COMPLETO) ===================== */
+/* FAQ cinematográfico (leve) – mantido */
 (() => {
   const items = document.querySelectorAll('.faq-item');
   const closeItem = (item) => {
-    const a = item.querySelector('.faq-a');
-    if(!a) return;
-    // mede altura atual e anima para 0
-    const h = a.scrollHeight;
-    gsap.set(a, {height: h}); // lock para permitir animar
-    const tl = gsap.timeline({defaults:{ease:"soft"}});
-    tl.to(a, {
-      height: 0, opacity: 0, y: -6, filter: "blur(6px)",
-      clipPath: "inset(0 0 100% 0)", duration: .6
-    })
-    .to(item, {borderColor:'#ffffff22', boxShadow:'0 0 0 rgba(0,0,0,0)', duration:.4}, 0);
-    item.classList.remove('open');
-    const q = item.querySelector('.faq-q');
-    if(q){ q.setAttribute('aria-expanded','false'); }
-    a.setAttribute('aria-hidden','true');
+    const a = item.querySelector('.faq-a'); if(!a) return;
+    const h = a.scrollHeight; gsap.set(a, {height: h});
+    gsap.timeline({defaults:{ease:"soft"}})
+      .to(a, {height: 0, opacity: 0, y: -6, filter: "blur(6px)", clipPath: "inset(0 0 100% 0)", duration: .6})
+      .to(item, {borderColor:'#ffffff22', boxShadow:'0 0 0 rgba(0,0,0,0)', duration:.4}, 0);
+    item.classList.remove('open'); item.querySelector('.faq-q')?.setAttribute('aria-expanded','false'); a.setAttribute('aria-hidden','true');
   };
   const openItem = (item) => {
-    const a = item.querySelector('.faq-a');
-    if(!a) return;
-    // mede altura alvo
+    const a = item.querySelector('.faq-a'); if(!a) return;
     const target = a.scrollHeight;
-    const tl = gsap.timeline({defaults:{ease:"soft"}});
-    tl.fromTo(a,
-      {height: 0, opacity: 0, y: -8, filter: "blur(8px)", clipPath: "inset(0 0 100% 0)"},
-      {height: target, opacity: 1, y: 0, filter: "blur(0px)", clipPath: "inset(0 0 0% 0)", duration: .9}
-    )
-    .to(item, {borderColor:'rgba(214,194,121,.55)', boxShadow:'0 14px 46px rgba(214,194,121,.22)', duration:.6}, 0)
-    .add(()=> gsap.set(a,{height:'auto'})); // libera altura após animar
-    item.classList.add('open');
-    const q = item.querySelector('.faq-q');
-    if(q){ q.setAttribute('aria-expanded','true'); }
-    a.setAttribute('aria-hidden','false');
+    gsap.timeline({defaults:{ease:"soft"}})
+      .fromTo(a,{height: 0, opacity: 0, y: -8, filter: "blur(8px)", clipPath: "inset(0 0 100% 0)"},
+                   {height: target, opacity: 1, y: 0, filter: "blur(0px)", clipPath: "inset(0 0 0% 0)", duration: .9})
+      .to(item, {borderColor:'rgba(214,194,121,.55)', boxShadow:'0 14px 46px rgba(214,194,121,.22)', duration:.6}, 0)
+      .add(()=> gsap.set(a,{height:'auto'}));
+    item.classList.add('open'); item.querySelector('.faq-q')?.setAttribute('aria-expanded','true'); a.setAttribute('aria-hidden','false');
   };
   items.forEach(item=>{
-    const q = item.querySelector('.faq-q');
-    const a = item.querySelector('.faq-a');
-    if(!q || !a) return;
+    const q = item.querySelector('.faq-q'); const a = item.querySelector('.faq-a'); if(!q || !a) return;
     q.addEventListener('click', ()=>{
-      // fecha os outros primeiro (acordeão)
       items.forEach(it => { if(it!==item && it.classList.contains('open')) closeItem(it); });
-      // toggle deste
       item.classList.contains('open') ? closeItem(item) : openItem(item);
     });
   });
 })();
 
-/* ====== PREÇO: ANIMAÇÃO “JANELA” AO ENTRAR ====== */
+/* Preço: entrada */
 (() => {
   const table = document.querySelector('#preco .table');
-  const note  = document.querySelector('#preco .note');
-  if(!table) return;
-  const tl = gsap.timeline({
-    scrollTrigger:{
-      trigger: table, start:"top 80%", once:true
-    }, defaults:{ease:"soft"}
-  });
-  tl.to(table, {
-    opacity:1, y:0, scale:1, duration:1.0,
-    clipPath: `inset(0% 0% 0% 0% round 16px)`,
-    boxShadow:'0 28px 120px rgba(214,194,121,.18)'
-  })
-  .add(()=> table.classList.add('enter')), // dispara sweep highlight
+  const note  = document.querySelector('#preco .note'); if(!table) return;
+  const tl = gsap.timeline({ scrollTrigger:{ trigger: table, start:"top 80%", once:true }, defaults:{ease:"soft"} });
+  tl.to(table, { opacity:1, y:0, scale:1, duration:1.0, clipPath: `inset(0% 0% 0% 0% round 16px)`, boxShadow:'0 28px 120px rgba(214,194,121,.18)' })
+    .add(()=> table.classList.add('enter')),
   tl.to(note, {opacity:1, y:0, duration:.7}, "-=0.4");
 })();
 
-/* Paw Trail: partículas 2D (emoji) no cursor */
+/* Paw Trail: só no PC */
 (() => {
-  if(prefersReduced) return;
-  const cvs = document.getElementById('pawTrail');
-  const ctx = cvs.getContext('2d');
-  function resize(){ cvs.width = innerWidth; cvs.height = innerHeight; }
-  addEventListener('resize', resize); resize();
-  let particles = []; let last = 0; let mx=0,my=0;
-  addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; spawn(3); }, {passive:true});
-  function spawn(n=2){
-    for(let i=0;i<n;i++){
-      particles.push({x:mx+(Math.random()-0.5)*12, y:my+(Math.random()-0.5)*12, a:1, vy:-0.6-Math.random()*0.6, vx:(Math.random()-0.5)*0.6, s:18+Math.random()*8, r: (Math.random()*20-10)});
-    }
-  }
+  if(prefersReduced || IS_MOBILE) return;
+  const cvs = document.getElementById('pawTrail'); const ctx = cvs.getContext('2d');
+  function resize(){ cvs.width = innerWidth; cvs.height = innerHeight; } addEventListener('resize', resize); resize();
+  let particles = []; let last = 0; let mx=0,my=0; addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; spawn(3); }, {passive:true});
+  function spawn(n=2){ for(let i=0;i<n;i++){ particles.push({x:mx+(Math.random()-0.5)*12, y:my+(Math.random()-0.5)*12, a:1, vy:-0.6-Math.random()*0.6, vx:(Math.random()-0.5)*0.6, s:18+Math.random()*8, r: (Math.random()*20-10)}); } }
   function loop(ts){
-    const dt = Math.min(32, ts-last); last=ts;
-    ctx.clearRect(0,0,cvs.width,cvs.height);
-    particles.forEach(p=>{
-      p.x += p.vx*dt*0.06; p.y += p.vy*dt*0.06; p.a -= 0.008; p.r += 0.5;
-      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180);
-      ctx.globalAlpha = Math.max(0,p.a);
-      ctx.font = `${p.s}px serif`; ctx.fillText('🐾', 0, 0);
-      ctx.restore();
-    });
-    particles = particles.filter(p=>p.a>0);
-    requestAnimationFrame(loop);
+    const dt = Math.min(32, ts-last); last=ts; ctx.clearRect(0,0,cvs.width,cvs.height);
+    particles.forEach(p=>{ p.x += p.vx*dt*0.06; p.y += p.vy*dt*0.06; p.a -= 0.008; p.r += 0.5;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180); ctx.globalAlpha = Math.max(0,p.a);
+      ctx.font = `${p.s}px serif`; ctx.fillText('🐾', 0, 0); ctx.restore(); });
+    particles = particles.filter(p=>p.a>0); requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
 })();
 
-/* tsParticles – camada sutil de partículas 🐾 no HERO */
-tsParticles.load({
-  id: "tpaw",
-  options: {
-    fullScreen: { enable:false },
-    background: { color: "transparent" },
-    particles:{
-      number:{value:14}, move:{enable:true,speed:0.7, direction:"none", outModes:{default:"bounce"}},
-      shape:{ type:"char", character:{ value:["🐾"], style:"", weight:"400"} },
-      size:{ value:16, random:{enable:true, minimumValue:10}},
-      opacity:{value:.25}, color:{value:"#d6c279"}
+/* tsParticles — só no PC */
+if (!window.Env.IS_MOBILE && !prefersReduced && window.tsParticles) {
+  tsParticles.load({
+    id: "tpaw",
+    options: {
+      fullScreen: { enable:false },
+      background: { color: "transparent" },
+      particles:{
+        number:{value:14},
+        move:{enable:true,speed:0.7, direction:"none", outModes:{default:"bounce"}},
+        shape:{ type:"char", character:{ value:["🐾"], style:"", weight:"400"} },
+        size:{ value:16, random:{enable:true, minimumValue:10}},
+        opacity:{value:.25}, color:{value:"#d6c279"}
+      }
     }
-  }
-});
+  });
+}
 
-/* CÃO ORBITANDO A FILOSOFIA — bursts periódicos */
+/* Cão orbitando: bursts só no PC (CSS orbit fica em todos) */
 (() => {
   const wrap = document.querySelector('#filosofia .wrap');
   const card = document.getElementById('philoCard');
   const orbit = document.getElementById('dogOrbit');
   if(!wrap || !card || !orbit) return;
   function placeOrbit(){
-    const wr = wrap.getBoundingClientRect();
-    const r = card.getBoundingClientRect();
-    const pad = 140;
-    orbit.style.display='block';
-    orbit.style.width  = (r.width + pad)+'px';
-    orbit.style.height = (r.height + pad)+'px';
-    orbit.style.left   = (r.left - wr.left - pad/2)+'px';
-    orbit.style.top    = (r.top - wr.top - pad/2)+'px';
+    const wr = wrap.getBoundingClientRect(); const r = card.getBoundingClientRect(); const pad = 140;
+    orbit.style.display='block'; orbit.style.width  = (r.width + pad)+'px'; orbit.style.height = (r.height + pad)+'px';
+    orbit.style.left   = (r.left - wr.left - pad/2)+'px'; orbit.style.top = (r.top - wr.top - pad/2)+'px';
   }
   placeOrbit(); addEventListener('resize', placeOrbit);
+  if (IS_MOBILE || prefersReduced) return;
   let lastBurst = performance.now();
   function bursts(ts){
     if(ts - lastBurst > 2000){
       lastBurst = ts;
-      const rect = orbit.getBoundingClientRect();
-      const cx = rect.left + rect.width/2;
-      const cy = rect.top + 10;
-      new mojs.Burst({
-        left: cx, top: cy, radius: {10:60}, count:8,
-        children:{shape:'circle', fill:'#d6c279', opacity:{1:0}, duration:900}
-      }).replay();
+      const rect = orbit.getBoundingClientRect(); const cx = rect.left + rect.width/2; const cy = rect.top + 10;
+      new mojs.Burst({ left: cx, top: cy, radius: {10:60}, count:8, children:{shape:'circle', fill:'#d6c279', opacity:{1:0}, duration:900} }).replay();
     }
     requestAnimationFrame(bursts);
   }
@@ -836,7 +747,7 @@ tsParticles.load({
 })();
 </script>
 
-<!-- ============== THREE.JS PESADO (com pós-processamento) — EM MÓDULO ============== -->
+<!-- ===== THREE.JS (com pós) — apenas no PC; no celular não inicia ===== -->
 <script type="module">
 import { EffectComposer }   from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass }       from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/RenderPass.js";
@@ -846,103 +757,104 @@ import { FXAAShader }       from "https://unpkg.com/three@0.152.2/examples/jsm/s
 import { RGBShiftShader }   from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/RGBShiftShader.js";
 import { VignetteShader }   from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/VignetteShader.js";
 
+const { IS_MOBILE } = window.Env || {};
 const canvas = document.getElementById('bg3d');
-const scene  = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 2000);
-camera.position.set(0, 6, 38);
+if (IS_MOBILE) { canvas?.remove(); /* mesma aparência estática no hero */ }
+else {
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 2000);
+  camera.position.set(0, 6, 38);
 
-const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.setSize(innerWidth, innerHeight);
-renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-/* Luzes dramáticas */
-scene.add(new THREE.AmbientLight(0xffffff, .25));
-const dir = new THREE.DirectionalLight(0xffffff, 1.15);
-dir.position.set(6, 12, 12); dir.castShadow = true; scene.add(dir);
-const spot = new THREE.SpotLight(0xfff2c4, 2, 200, Math.PI/5, .2, .8);
-spot.position.set(-18, 18, 8); scene.add(spot);
+  /* Luzes */
+  scene.add(new THREE.AmbientLight(0xffffff, .25));
+  const dir = new THREE.DirectionalLight(0xffffff, 1.15);
+  dir.position.set(6, 12, 12); dir.castShadow = true; scene.add(dir);
+  const spot = new THREE.SpotLight(0xfff2c4, 2, 200, Math.PI/5, .2, .8);
+  spot.position.set(-18, 18, 8); scene.add(spot);
 
-/* Partículas 3D douradas */
-function circleTexture(size=64){
-  const c=document.createElement('canvas'); c.width=c.height=size;
-  const ctx=c.getContext('2d'); const g=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);
-  g.addColorStop(0,'rgba(214,194,121,1)'); g.addColorStop(.4,'rgba(214,194,121,.82)'); g.addColorStop(1,'rgba(214,194,121,0)');
-  ctx.fillStyle=g; ctx.fillRect(0,0,size,size); const t=new THREE.Texture(c); t.needsUpdate=true; return t;
-}
-const COUNT = 2200;
-const geom = new THREE.BufferGeometry();
-const pos  = new Float32Array(COUNT*3);
-const spd  = new Float32Array(COUNT);
-for(let i=0;i<COUNT;i++){
-  pos[i*3+0] = (Math.random()-0.5)*120;
-  pos[i*3+1] = (Math.random()-0.5)*70;
-  pos[i*3+2] = (Math.random()-0.5)*60;
-  spd[i] = 0.2 + Math.random()*0.8;
-}
-geom.setAttribute('position', new THREE.BufferAttribute(pos,3));
-const mat = new THREE.PointsMaterial({size:1.75,map:circleTexture(),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,color:0xd6c279,opacity:.95});
-const points = new THREE.Points(geom, mat); scene.add(points);
-
-/* Objeto PBR (torusKnot) */
-const knot = new THREE.Mesh(
-  new THREE.TorusKnotGeometry(4.2, 1.1, 200, 32),
-  new THREE.MeshPhysicalMaterial({color:0xd6c279, metalness:.9, roughness:.25, reflectivity:.8, clearcoat:.7, clearcoatRoughness:.15})
-);
-knot.position.set(0,2,-8); knot.castShadow=true; scene.add(knot);
-
-/* Fita dourada (tube) */
-const curve = new THREE.CatmullRomCurve3([...Array(14)].map((_,i)=>new THREE.Vector3(i*8-50, Math.sin(i)*10, Math.cos(i*.7)*6)));
-const tube = new THREE.TubeGeometry(curve, 160, .35, 8, false);
-const tMat = new THREE.MeshBasicMaterial({color:0xd6c279, transparent:true, opacity:.45});
-const ribbon = new THREE.Mesh(tube, tMat);
-ribbon.position.z = -10; scene.add(ribbon);
-
-/* Pós-processamento */
-const composer = new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene,camera));
-const fxaa = new ShaderPass(FXAAShader);
-fxaa.uniforms['resolution'].value.set(1/innerWidth, 1/innerHeight); composer.addPass(fxaa);
-const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight), 0.95, 0.6, 0.85); composer.addPass(bloom);
-const rgbShift = new ShaderPass(RGBShiftShader); rgbShift.uniforms.amount.value=0.0009; composer.addPass(rgbShift);
-const vignette = new ShaderPass(VignetteShader); vignette.uniforms.offset.value=1.0; vignette.uniforms.darkness.value=1.25; composer.addPass(vignette);
-
-/* Resize */
-addEventListener('resize',()=>{ 
-  renderer.setSize(innerWidth,innerHeight); 
-  camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
-  composer.setSize(innerWidth,innerHeight); fxaa.uniforms['resolution'].value.set(1/innerWidth,1/innerHeight);
-});
-
-/* Interações */
-let mx=0,my=0, tx=0, ty=0, scrollBoost=0;
-addEventListener('mousemove',e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); },{passive:true});
-addEventListener('scroll', ()=>{ scrollBoost = Math.min(3, scrollBoost+0.18); }, {passive:true});
-
-function animate(){
-  tx += (mx - tx)*.04; ty += (my - ty)*.04;
-  const a = geom.attributes.position.array;
-  const t = performance.now()*0.001;
-  for(let i=0;i<COUNT;i++){
-    const ix=i*3;
-    a[ix+1] += (Math.sin(t*spd[i] + a[ix]*.03)*.02) + scrollBoost*.012;
-    a[ix+0] += Math.cos(t*spd[i] + a[ix+2]*.02)*.006;
-    a[ix+2] += Math.sin(t*spd[i] + a[ix+1]*.02)*.004;
+  /* Partículas 3D douradas */
+  function circleTexture(size=64){
+    const c=document.createElement('canvas'); c.width=c.height=size;
+    const ctx=c.getContext('2d'); const g=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);
+    g.addColorStop(0,'rgba(214,194,121,1)'); g.addColorStop(.4,'rgba(214,194,121,.82)'); g.addColorStop(1,'rgba(214,194,121,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,size,size); const t=new THREE.Texture(c); t.needsUpdate=true; return t;
   }
-  geom.attributes.position.needsUpdate = true;
-  scrollBoost *= .92;
-  knot.rotation.x += 0.003; knot.rotation.y -= 0.004;
-  points.rotation.y += 0.0009; points.rotation.x += 0.0003;
-  ribbon.rotation.y -= 0.0006;
-  camera.position.x += (tx*5 - camera.position.x)*.06;
-  camera.position.y += (-ty*2 - camera.position.y)*.06;
-  composer.render();
+  const COUNT = 2200;
+  const geom = new THREE.BufferGeometry();
+  const pos  = new Float32Array(COUNT*3);
+  const spd  = new Float32Array(COUNT);
+  for(let i=0;i<COUNT;i++){
+    pos[i*3+0] = (Math.random()-0.5)*120;
+    pos[i*3+1] = (Math.random()-0.5)*70;
+    pos[i*3+2] = (Math.random()-0.5)*60;
+    spd[i] = 0.2 + Math.random()*0.8;
+  }
+  geom.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  const mat = new THREE.PointsMaterial({size:1.75,map:circleTexture(),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,color:0xd6c279,opacity:.95});
+  const points = new THREE.Points(geom, mat); scene.add(points);
+
+  /* TorusKnot */
+  const knot = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(4.2, 1.1, 200, 32),
+    new THREE.MeshPhysicalMaterial({color:0xd6c279, metalness:.9, roughness:.25, reflectivity:.8, clearcoat:.7, clearcoatRoughness:.15})
+  );
+  knot.position.set(0,2,-8); knot.castShadow=true; scene.add(knot);
+
+  /* Fita */
+  const curve = new THREE.CatmullRomCurve3([...Array(14)].map((_,i)=>new THREE.Vector3(i*8-50, Math.sin(i)*10, Math.cos(i*.7)*6)));
+  const tube = new THREE.TubeGeometry(curve, 160, .35, 8, false);
+  const tMat = new THREE.MeshBasicMaterial({color:0xd6c279, transparent:true, opacity:.45});
+  const ribbon = new THREE.Mesh(tube, tMat);
+  ribbon.position.z = -10; scene.add(ribbon);
+
+  /* Pós-processamento */
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene,camera));
+  const fxaa = new ShaderPass(FXAAShader); fxaa.uniforms['resolution'].value.set(1/innerWidth, 1/innerHeight); composer.addPass(fxaa);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight), 0.95, 0.6, 0.85); composer.addPass(bloom);
+  const rgbShift = new ShaderPass(RGBShiftShader); rgbShift.uniforms.amount.value=0.0009; composer.addPass(rgbShift);
+  const vignette = new ShaderPass(VignetteShader); vignette.uniforms.offset.value=1.0; vignette.uniforms.darkness.value=1.25; composer.addPass(vignette);
+
+  addEventListener('resize',()=>{ 
+    renderer.setSize(innerWidth,innerHeight); 
+    camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+    composer.setSize(innerWidth,innerHeight); fxaa.uniforms['resolution'].value.set(1/innerWidth,1/innerHeight);
+  });
+
+  let mx=0,my=0, tx=0, ty=0, scrollBoost=0;
+  addEventListener('mousemove',e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); },{passive:true});
+  addEventListener('scroll', ()=>{ scrollBoost = Math.min(3, scrollBoost+0.18); }, {passive:true});
+
+  function animate(){
+    tx += (mx - tx)*.04; ty += (my - ty)*.04;
+    const a = geom.attributes.position.array;
+    const t = performance.now()*0.001;
+    for(let i=0;i<COUNT;i++){
+      const ix=i*3;
+      a[ix+1] += (Math.sin(t*spd[i] + a[ix]*.03)*.02) + scrollBoost*.012;
+      a[ix+0] += Math.cos(t*spd[i] + a[ix+2]*.02)*.006;
+      a[ix+2] += Math.sin(t*spd[i] + a[ix+1]*.02)*.004;
+    }
+    geom.attributes.position.needsUpdate = true;
+    scrollBoost *= .92;
+    knot.rotation.x += 0.003; knot.rotation.y -= 0.004;
+    points.rotation.y += 0.0009; points.rotation.x += 0.0003;
+    ribbon.rotation.y -= 0.0006;
+    camera.position.x += (tx*5 - camera.position.x)*.06;
+    camera.position.y += (-ty*2 - camera.position.y)*.06;
+    composer.render();
+    requestAnimationFrame(animate);
+  }
   requestAnimationFrame(animate);
 }
-requestAnimationFrame(animate);
 </script>
 </body>
-</html> eu quero esse code pq esse tá o melhor, tenta otimizar só que sem mudar nenhuma animaçao e nada da aparencia, deixe a mesma aparencia, animaçoes e efeitos. 
+</html>
