@@ -235,6 +235,27 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
 
 /* Redução de movimento */
 @media (prefers-reduced-motion:reduce){ .emoji-track{animation:none} .cursor{display:none} }
+
+/* ===== Mobile: mesma aparência, sem animações/peso ===== */
+@media (max-width: 820px){
+  :root{ --belt:24px; }
+  .wrap{ padding:0 14px; }
+  .nav-inner{ height:60px; }
+  .nav-links{
+    gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  }
+  .nav-links::-webkit-scrollbar{ display:none }
+  .nav-link{ flex:0 0 auto }
+  .emoji-track, .layer-ring, .price-chip, .price-chip::before { animation: none !important; }
+  .btn:hover, .step:hover, .icon-card:hover{ transform: none !important; }
+  .table.enter::after{ display:none }
+  .cursor{ display:none !important; }
+  .hero-inner{ padding:72px 16px }
+  .divider{ height:44px }
+  .section{ padding:72px 0 }
+}
 </style>
 </head>
 <body>
@@ -524,16 +545,20 @@ document.addEventListener('scroll', updateBars, {passive:true}); updateBars();
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, ScrollToPlugin, Flip, CustomEase);
 CustomEase.create("soft","0.25,0.8,0.25,1");
 
-/* Hero split (leve) — mantido em todos */
-const splitTitle = new SplitType('#titleSplit', {types:'chars'});
-const splitSub = new SplitType('#subSplit', {types:'words'});
-gsap.set(splitTitle.chars, {opacity:0, y:40, rotateX:25, transformOrigin:'50% 100%'});
-gsap.set(splitSub.words,  {opacity:0, y:18});
-gsap.timeline({defaults:{ease:"soft"}})
-  .to(splitTitle.chars, {opacity:1, y:0, rotateX:0, stagger:{each:0.02, from:"center"}, duration:1.0}, 0)
-  .to(splitSub.words,  {opacity:1, y:0, stagger:0.03, duration:.7}, .15)
-  .from('.price-chip', {scale:.9, opacity:0, duration:.5, ease:"back.out(1.8)"}, .35)
-  .from('.cta-row .btn', {y:18, opacity:0, stagger:.08, duration:.55}, .45);
+/* Hero split — desktop anima; celular só exibe */
+if (!IS_MOBILE && !prefersReduced) {
+  const splitTitle = new SplitType('#titleSplit', {types:'chars'});
+  const splitSub = new SplitType('#subSplit', {types:'words'});
+  gsap.set(splitTitle.chars, {opacity:0, y:40, rotateX:25, transformOrigin:'50% 100%'});
+  gsap.set(splitSub.words,  {opacity:0, y:18});
+  gsap.timeline({defaults:{ease:"soft"}})
+    .to(splitTitle.chars, {opacity:1, y:0, rotateX:0, stagger:{each:0.02, from:"center"}, duration:1.0}, 0)
+    .to(splitSub.words,  {opacity:1, y:0, stagger:0.03, duration:.7}, .15)
+    .from('.price-chip', {scale:.9, opacity:0, duration:.5, ease:"back.out(1.8)"}, .35)
+    .from('.cta-row .btn', {y:18, opacity:0, stagger:.08, duration:.55}, .45);
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>{ el.style.opacity=1; el.style.transform='none'; });
+}
 
 /* Reveals globais: PC com animação; Mobile: mostra direto (sem custo) */
 if (!IS_MOBILE && !prefersReduced) {
@@ -541,8 +566,6 @@ if (!IS_MOBILE && !prefersReduced) {
     gsap.fromTo(el,{y:22,opacity:0},{y:0,opacity:1,duration:.7,delay:(i%5)*0.03,ease:"power2.out",
       scrollTrigger:{trigger:el,start:"top 85%"}});
   });
-} else {
-  document.querySelectorAll('.reveal').forEach(el=>{ el.style.opacity=1; el.style.transform='none'; });
 }
 
 /* Active link na nav (leve) */
@@ -747,20 +770,23 @@ if (!window.Env.IS_MOBILE && !prefersReduced && window.tsParticles) {
 })();
 </script>
 
-<!-- ===== THREE.JS (com pós) — apenas no PC; no celular não inicia ===== -->
+<!-- ===== THREE.JS (com pós) — desktop somente; celular não carrega módulos ===== -->
 <script type="module">
-import { EffectComposer }   from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass }       from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass }  from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { ShaderPass }       from "https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/ShaderPass.js";
-import { FXAAShader }       from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/FXAAShader.js";
-import { RGBShiftShader }   from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/RGBShiftShader.js";
-import { VignetteShader }   from "https://unpkg.com/three@0.152.2/examples/jsm/shaders/VignetteShader.js";
+if (!window.Env?.IS_MOBILE) {
+  const [{ EffectComposer }, { RenderPass }, { UnrealBloomPass }, { ShaderPass }, { FXAAShader }, { RGBShiftShader }, { VignetteShader }] =
+    await Promise.all([
+      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/EffectComposer.js"),
+      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/RenderPass.js"),
+      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/UnrealBloomPass.js"),
+      import("https://unpkg.com/three@0.152.2/examples/jsm/postprocessing/ShaderPass.js"),
+      import("https://unpkg.com/three@0.152.2/examples/jsm/shaders/FXAAShader.js"),
+      import("https://unpkg.com/three@0.152.2/examples/jsm/shaders/RGBShiftShader.js"),
+      import("https://unpkg.com/three@0.152.2/examples/jsm/shaders/VignetteShader.js"),
+    ]);
 
-const { IS_MOBILE } = window.Env || {};
-const canvas = document.getElementById('bg3d');
-if (IS_MOBILE) { canvas?.remove(); /* mesma aparência estática no hero */ }
-else {
+  const THREE = window.THREE;
+  const canvas = document.getElementById('bg3d');
+
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 2000);
   camera.position.set(0, 6, 38);
@@ -854,6 +880,9 @@ else {
     requestAnimationFrame(animate);
   }
   requestAnimationFrame(animate);
+} else {
+  // celular: mantém aparência estática e remove o canvas 3D
+  document.getElementById('bg3d')?.remove();
 }
 </script>
 </body>
