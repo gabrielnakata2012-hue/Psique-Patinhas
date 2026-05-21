@@ -176,7 +176,7 @@ header.hero{position:relative;min-height:100vh;display:grid;place-items:center;o
 .method.draw .wave path{stroke-dashoffset:0}
 .method .row{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
 @media (max-width:1100px){.method .row{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:720px){.method .row{grid-template-columns:1fr}}
+@media (max-width:720px){.method .row{grid-template-columns:1fr)}}
 .m-item{display:flex;gap:12px;align-items:flex-start}
 .m-ico{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(214,194,121,.12);display:grid;place-items:center;color:var(--gold);box-shadow:0 8px 22px rgba(214,194,121,.15);transition:transform .25s var(--ease),filter .25s var(--ease)}
 .m-item:hover .m-ico{transform:rotate(-4deg) translateY(-2px);filter:drop-shadow(0 8px 22px rgba(214,194,121,.35))}
@@ -344,8 +344,9 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
       <a class="nav-link underline" href="#metodologia">Metodologia</a>
       <a class="nav-link underline" href="#faq">FAQ</a>
       <a class="nav-link underline" href="#preco">Preço</a>
+      <a class="nav-link underline" href="#politica-privacidade">Política de Privacidade</a> <!-- NOVO LINK -->
       <a class="btn cta-primary nav-link magnetic radial" id="whats-cta"
-         href="https://wa.me/5514996649899?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20uma%20consulta%20na%20Psiqu%C3%AA%20Patinhas."
+         href="https://wa.me/5514999253707?text=Olá%2C%20gostaria%20de%20iniciar%20uma%20consulta%20na%20Psiquê%20Patinhas."
          target="_blank" aria-label="Iniciar consulta pelo WhatsApp">WhatsApp</a>
     </div>
   </div>
@@ -370,123 +371,102 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
     <p class="subtitle reveal" id="subSplit">Consultoria comportamental com ciência & carinho</p>
     <div class="price-chip reveal" aria-live="polite">Preço ultra barato por consulta exclusiva</div>
     <div class="cta-row reveal">
-      <a class="btn cta-primary magnetic hover-float radial"
-         href="https://wa.me/5514996649899?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20uma%20consulta%20na%20Psiqu%C3%AA%20Patinhas."
-         target="_blank" aria-label="Iniciar Consulta pelo WhatsApp">Iniciar Consulta</a>
-      <a class="btn cta-secondary magnetic" href="#faq" aria-label="Ver perguntas frequentes">Dúvidas</a>
+      <a class="btn cta-primary magnetic radial"
+         href="https://wa.me/5514999253707?text=Olá%2C%20gostaria%20de%20iniciar%20uma%20consulta%20na%20Psiquê%20Patinhas."
+         target="_blank" aria-label="Iniciar consulta pelo WhatsApp">
+        <lord-icon src="https://cdn.lordicon.com/skkahier.json" trigger="loop" delay="1000" colors="primary:#16c72e,secondary:#ebe6ef" style="width:24px;height:24px"></lord-icon>
+        Iniciar Consulta
+      </a>
+      <a class="btn cta-secondary magnetic" href="#consulta">
+        Saiba Mais
+      </a>
     </div>
   </div>
-
-  <div class="lottie-corner" aria-hidden="true">
-    <lord-icon src="https://cdn.lordicon.com/yqzmiobz.json" trigger="loop" delay="1800" colors="primary:#d6c279,secondary:#d6c279" style="width:44px;height:44px"></lord-icon>
-  </div>
+  <div class="lottie-corner" id="lottie-corner" aria-hidden="true"></div>
 </header>
 
-<div class="divider" aria-hidden="true">
-  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C300,120 1140,0 1440,60 L1440,100 L0,100 Z" fill="#121212" opacity=".85"/></svg>
+<div class="divider">
+  <svg viewBox="0 0 1000 60" preserveAspectRatio="none">
+    <path d="M0,0 L0,60 L1000,60 L1000,0 C800,40 600,40 500,40 C400,40 200,40 0,0 Z" fill="var(--bg)"></path>
+  </svg>
 </div>
 
 <section id="consulta" class="section alt">
   <div class="wrap">
-    <h2 class="h2 reveal">A Consulta / Como Funciona</h2>
-    <p class="lead reveal">Processo simples, humano e eficiente.</p>
+    <h2 class="h2 reveal">Como Funciona a Consulta?</h2>
+    <p class="lead reveal">Nossa consultoria é simples, direta e focada no bem-estar do seu pet. Entenda o processo:</p>
 
     <div class="steps-grid">
-      <article class="step reveal tilt magnetic">
-        <div class="ord">1) Contato Inicial</div>
-        <h3 class="step-title">Você será direcionado a um atendimento exclusivo via WhatsApp, onde um especialista acolhe suas dúvidas com total dedicação.</h3>
-        <p class="step-text">Atendimento acolhedor e objetivo desde o primeiro contato.</p>
-      </article>
-      <article class="step reveal tilt magnetic">
-        <div class="ord">2) Investimento Simbólico</div>
-        <h3 class="step-title">A consulta custa um preço bem acessivel, paga de forma rápida e segura via PIX. O valor é acessível e reflete nosso compromisso em democratizar orientação qualificada.</h3>
-        <p class="step-text">Pagamento ágil e transparente, sem taxas ocultas.</p>
-      </article>
-      <article class="step reveal tilt magnetic">
-        <div class="ord">3) Diagnóstico Personalizado</div>
-        <h3 class="step-title">Após a confirmação do pagamento, você recebe orientação precisa, imediata e adaptada ao seu caso, com base em metodologias fundamentadas.</h3>
-        <p class="step-text">Diretrizes claras e aplicáveis à rotina do seu pet.</p>
-      </article>
+      <div class="step reveal">
+        <div class="ord">01.</div>
+        <h3 class="step-title">Contato via WhatsApp</h3>
+        <p class="step-text">Você nos envia uma mensagem detalhando o comportamento ou a dúvida sobre seu pet.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ord">02.</div>
+        <h3 class="step-title">Análise e Orientação</h3>
+        <p class="step-text">Nossa equipe analisa o caso e oferece orientações personalizadas com base científica.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ord">03.</div>
+        <h3 class="step-title">Soluções Práticas</h3>
+        <p class="step-text">Receba dicas e estratégias para aplicar no dia a dia e melhorar a qualidade de vida do seu animal.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider" aria-hidden="true">
-  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C300,120 1140,0 1440,60 L1440,100 L0,100 Z" fill="#0e0e0e" opacity=".85"/></svg>
+<div class="divider">
+  <svg viewBox="0 0 1000 60" preserveAspectRatio="none" style="transform:rotate(180deg)">
+    <path d="M0,0 L0,60 L1000,60 L1000,0 C800,40 600,40 500,40 C400,40 200,40 0,0 Z" fill="var(--bg)"></path>
+  </svg>
 </div>
 
 <section id="filosofia" class="section">
   <div class="wrap">
     <h2 class="h2 reveal">Nossa Filosofia</h2>
-
-    <div class="dog-orbit" id="dogOrbit" aria-hidden="true" style="display:none">
-      <img src="assets/pets/dog.png" alt="">
-    </div>
+    <p class="lead reveal">Acreditamos que a chave para um relacionamento saudável com seu pet está na compreensão e no respeito mútuo. Nosso trabalho é guiado por:</p>
 
     <div class="philo reveal" id="philoCard">
-      <p>“Na Psiquê Patinhas acreditamos que o comportamento animal vai muito além do treinamento. É a ponte entre ciência e emoção, entre técnica e afeto. Nossa filosofia nasce da convicção de que cada pet é um ser único, com história, traços e necessidades próprias.
-      <br><br>Por isso, unimos ciência de vanguarda com empatia profunda, oferecendo um cuidado que ultrapassa o convencional. Nossa missão é transformar a relação entre tutores e animais em uma jornada de equilíbrio, confiança e bem-estar.
-      <br><br>Aqui, cada consulta é mais que orientação: é um compromisso de excelência, seriedade e amor pela vida que pulsa em cada patinha.”</p>
+      <p>Na Psiquê Patinhas, combinamos a paixão pelos animais com o rigor da ciência. Cada orientação é cuidadosamente elaborada para atender às necessidades individuais do seu pet, promovendo bem-estar e harmonia no lar. Nosso objetivo é fortalecer o vínculo entre tutores e animais, oferecendo suporte e conhecimento para uma convivência feliz e equilibrada.</p>
+    </div>
+    <div class="dog-orbit" id="dogOrbit" aria-hidden="true">
+      <img src="assets/logo/psique-patinhas.png" alt="Cão orbitando" onerror="this.style.display='none'">
     </div>
   </div>
 </section>
 
-<div class="divider" aria-hidden="true">
-  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,60 C300,120 1140,0 1440,60 L1440,100 L0,100 Z" fill="#121212" opacity=".85"/></svg>
-</div>
-
 <section id="metodologia" class="section alt">
   <div class="wrap">
     <h2 class="h2 reveal">Metodologia</h2>
+    <p class="lead reveal">Nossa abordagem é baseada em princípios de etologia e psicologia animal, garantindo soluções eficazes e humanizadas.</p>
 
     <div class="method reveal" id="method">
       <div class="row">
-        <div class="m-item magnetic"><div class="m-ico">🐾</div><div><strong>Avaliação comportamental breve e objetiva</strong><span class="muted">Análise clara do contexto do pet e da família.</span></div></div>
-        <div class="m-item magnetic"><div class="m-ico">🦴</div><div><strong>Rotina, ambiente e estímulos</strong><span class="muted">Observação das variáveis que influenciam o comportamento.</span></div></div>
-        <div class="m-item magnetic"><div class="m-ico">🛡️</div><div><strong>Técnicas baseadas em evidências</strong><span class="muted">Abordagens alinhadas à literatura e boas práticas.</span></div></div>
-        <div class="m-item magnetic"><div class="m-ico">✅</div><div><strong>Orientações práticas e aplicáveis</strong><span class="muted">Passos objetivos para resultados reais.</span></div></div>
-        <div class="m-item magnetic"><div class="m-ico">❤️</div><div><strong>Ética, respeito e bem-estar</strong><span class="muted">Segurança e humanidade em primeiro lugar.</span></div></div>
-      </div>
-      <svg class="wave" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
-        <path pathLength="1" d="M40,150 C200,220 380,90 540,120 S880,260 1080,70 Q1140,30 1160,60" />
-      </svg>
-    </div>
-
-    <div class="hwrap">
-      <div class="hpin" id="hpin">
-        <div class="hline" aria-hidden="true"></div>
-        <div class="htrack" id="htrack">
-          <div class="hstep magnetic"><div class="hs-ico">🔎</div><strong>Escuta & Contexto</strong><div class="muted">Entendemos o histórico do pet e do tutor.</div></div>
-          <div class="hstep magnetic"><div class="hs-ico">🧭</div><strong>Mapeamento</strong><div class="muted">Rotina, ambiente e estímulos relevantes.</div></div>
-          <div class="hstep magnetic"><div class="hs-ico">🧪</div><strong>Hipóteses</strong><div class="muted">Integração com evidências e boas práticas.</div></div>
-          <div class="hstep magnetic"><div class="hs-ico">📝</div><strong>Plano Claro</strong><div class="muted">Ações objetivas para hoje.</div></div>
-          <div class="hstep magnetic"><div class="hs-ico">✨</div><strong>Ajustes Finos</strong><div class="muted">Revisitas sob demanda.</div></div>
+        <div class="m-item">
+          <div class="m-ico"><lord-icon src="https://cdn.lordicon.com/cnpkkzby.json" trigger="loop" delay="1000" colors="primary:#d6c279" style="width:24px;height:24px"></lord-icon></div>
+          <div><strong>Análise Comportamental</strong><br>Identificamos a raiz do problema.</div>
+        </div>
+        <div class="m-item">
+          <div class="m-ico"><lord-icon src="https://cdn.lordicon.com/wxnxiano.json" trigger="loop" delay="1000" colors="primary:#d6c279" style="width:24px;height:24px"></lord-icon></div>
+          <div><strong>Estratégias Personalizadas</strong><br>Soluções adaptadas ao seu pet.</div>
+        </div>
+        <div class="m-item">
+          <div class="m-ico"><lord-icon src="https://cdn.lordicon.com/jvihlqrm.json" trigger="loop" delay="1000" colors="primary:#d6c279" style="width:24px;height:24px"></lord-icon></div>
+          <div><strong>Reforço Positivo</strong><br>Técnicas gentis e eficazes.</div>
+        </div>
+        <div class="m-item">
+          <div class="m-ico"><lord-icon src="https://cdn.lordicon.com/kbtmbyzy.json" trigger="loop" delay="1000" colors="primary:#d6c279" style="width:24px;height:24px"></lord-icon></div>
+          <div><strong>Acompanhamento</strong><br>Suporte contínuo para o tutor.</div>
+        </div>
+        <div class="m-item">
+          <div class="m-ico"><lord-icon src="https://cdn.lordicon.com/qhgqqyhe.json" trigger="loop" delay="1000" colors="primary:#d6c279" style="width:24px;height:24px"></lord-icon></div>
+          <div><strong>Bem-Estar Animal</strong><br>Foco na saúde mental e física.</div>
         </div>
       </div>
-    </div>
-
-    <div class="icons">
-      <div class="icon-card tilt reveal magnetic" aria-label="Acesso Imediato">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 12-16h-8l1-4z" stroke="url(#g1)" stroke-width="1.6"/><defs><linearGradient id="g1" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#d6c279"/><stop offset="1" stop-color="#bcae6a"/></linearGradient></defs></svg>
-        <div><strong>Acesso Imediato</strong><div class="muted">Sem esperas desnecessárias.</div></div>
-      </div>
-      <div class="icon-card tilt reveal magnetic" aria-label="Cuidado Distinto">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-6.5-4.2-9-7.7C1 10.6 2.6 7 6.3 7c2 0 3.2 1.1 3.7 2.1.5-1 1.7-2.1 3.7-2.1C17.4 7 19 10.6 21 13.3 18.5 16.8 12 21 12 21z" stroke="url(#g2)" stroke-width="1.6"/><defs><linearGradient id="g2" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#d6c279"/><stop offset="1" stop-color="#bcae6a"/></linearGradient></defs></svg>
-        <div><strong>Cuidado Distinto</strong><div class="muted">Um membro da família tratado com respeito.</div></div>
-      </div>
-      <div class="icon-card tilt reveal magnetic" aria-label="Baseado em Ciência">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v6c0 5-3.4 7.7-8 9-4.6-1.3-8-4-8-9V6l8-3z" stroke="url(#g3)" stroke-width="1.6"/><defs><linearGradient id="g3" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#d6c279"/><stop offset="1" stop-color="#bcae6a"/></linearGradient></defs></svg>
-        <div><strong>Baseado em Ciência</strong><div class="muted">Metodologia comprovada.</div></div>
-      </div>
-    </div>
-
-    <div class="cta-band reveal">
-      <div class="row">
-        <h3>Pronto para começar? Fale agora com um especialista.</h3>
-        <a class="btn cta-primary magnetic radial"
-           href="https://wa.me/5514996649899?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20a%20consulta%20comportamental%20da%20Psiqu%C3%AA%20Patinhas."
-           target="_blank" aria-label="Iniciar consulta no WhatsApp">Iniciar Consulta</a>
-      </div>
+      <svg class="wave" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,100 C150,50 350,150 500,100 C650,50 850,150 1000,100 L1000,200 L0,200 Z"></path>
+      </svg>
     </div>
   </div>
 </section>
@@ -494,22 +474,48 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
 <section id="faq" class="section">
   <div class="wrap">
     <h2 class="h2 reveal">Perguntas Frequentes</h2>
-    <div class="faq">
-      <div class="faq-item reveal">
-        <div class="faq-q" role="button" aria-expanded="false">Tempo de resposta <span class="plus">＋</span></div>
-        <div class="faq-a" aria-hidden="true"><p>Imediato (pode variar conforme demanda).</p></div>
+    <p class="lead reveal">Tire suas dúvidas sobre a Psiquê Patinhas e como podemos ajudar seu pet.</p>
+
+    <div class="faq reveal">
+      <div class="faq-item">
+        <div class="faq-q" aria-expanded="false" aria-controls="faq-a1" role="button" tabindex="0">
+          Qual o valor da consulta? <span class="plus">+</span>
+        </div>
+        <div class="faq-a" id="faq-a1" aria-hidden="true">
+          <p>Nossa consultoria tem um valor acessível de R$ 5,99 por consulta exclusiva. Queremos que o bem-estar do seu pet seja acessível a todos!</p>
+        </div>
       </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" role="button" aria-expanded="false">Temas <span class="plus">＋</span></div>
-        <div class="faq-a" aria-hidden="true"><p>Ansiedade, agressividade, socialização, adaptação, rotina.</p></div>
+      <div class="faq-item">
+        <div class="faq-q" aria-expanded="false" aria-controls="faq-a2" role="button" tabindex="0">
+          Como faço para iniciar uma consulta? <span class="plus">+</span>
+        </div>
+        <div class="faq-a" id="faq-a2" aria-hidden="true">
+          <p>É muito simples! Basta clicar no botão "Iniciar Consulta" em nosso site, que te direcionará para o WhatsApp. Lá, você descreve a situação do seu pet e nossa equipe começará a te ajudar.</p>
+        </div>
       </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" role="button" aria-expanded="false">Acompanhamento <span class="plus">＋</span></div>
-        <div class="faq-a" aria-hidden="true"><p>Podemos orientar próximos passos e revisitas, conforme necessidade.</p></div>
+      <div class="faq-item">
+        <div class="faq-q" aria-expanded="false" aria-controls="faq-a3" role="button" tabindex="0">
+          Quem são os profissionais da Psiquê Patinhas? <span class="plus">+</span>
+        </div>
+        <div class="faq-a" id="faq-a3" aria-hidden="true">
+          <p>Nossa equipe é composta por especialistas em comportamento animal, com formação em etologia e psicologia veterinária. Todos apaixonados por pets e dedicados a oferecer as melhores orientações.</p>
+        </div>
       </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" role="button" aria-expanded="false">Substitui veterinário? <span class="plus">＋</span></div>
-        <div class="faq-a" aria-hidden="true"><p>Não — nosso foco é comportamento. Para questões clínicas, procure seu veterinário.</p></div>
+      <div class="faq-item">
+        <div class="faq-q" aria-expanded="false" aria-controls="faq-a4" role="button" tabindex="0">
+          A consultoria substitui uma visita ao veterinário? <span class="plus">+</span>
+        </div>
+        <div class="faq-a" id="faq-a4" aria-hidden="true">
+          <p>Não. A Psiquê Patinhas oferece orientação comportamental e educacional. Para questões de saúde física, é fundamental consultar um médico veterinário. Em casos de emergência, procure imediatamente um profissional.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" aria-expanded="false" aria-controls="faq-a5" role="button" tabindex="0">
+          Posso consultar sobre qualquer tipo de pet? <span class="plus">+</span>
+        </div>
+        <div class="faq-a" id="faq-a5" aria-hidden="true">
+          <p>Nossa especialidade são cães e gatos, mas podemos oferecer orientações gerais para outros pets. Se tiver dúvidas sobre um animal específico, entre em contato e veremos como podemos ajudar!</p>
+        </div>
       </div>
     </div>
   </div>
@@ -517,25 +523,48 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
 
 <section id="preco" class="section alt">
   <div class="wrap">
-    <h2 class="h2 reveal">Transparência & Preço</h2>
-    <table class="table reveal" aria-label="Tabela de transparência de preço">
-      <thead><tr><th>Item</th><th>Descrição</th></tr></thead>
-      <tbody>
-        <tr><td>Valor fixo</td><td>Pagamento via PIX</td></tr>
-        <tr><td>Inclui</td><td>Orientação inicial personalizada.</td></tr>
-        <tr><td>Não inclui</td><td>Emergências, procedimentos presenciais, laudos clínicos.</td></tr>
-      </tbody>
-    </table>
-    <div class="note reveal">Tratamos seus dados conforme a LGPD. Usamos somente o necessário para viabilizar o atendimento.</div>
+    <h2 class="h2 reveal">Preço</h2>
+    <p class="lead reveal">Transparência e acessibilidade para o bem-estar do seu pet.</p>
+
+    <div class="table reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Serviço</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Consulta Exclusiva</td>
+            <td>Orientação comportamental personalizada via WhatsApp.</td>
+            <td>R$ 5,99</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note reveal">Preço por consulta, sem mensalidades ou taxas escondidas. Simples e direto!</p>
+
+    <div class="cta-band reveal">
+      <div class="row">
+        <h3>Pronto para transformar a vida do seu pet?</h3>
+        <a class="btn cta-primary magnetic radial"
+           href="https://wa.me/5514999253707?text=Olá!%20Gostaria%20de%20iniciar%20a%20consulta%20comportamental%20da%20Psiquê%20Patinhas."
+           target="_blank" aria-label="Iniciar consulta agora">
+          <lord-icon src="https://cdn.lordicon.com/skkahier.json" trigger="loop" delay="1000" colors="primary:#16c72e,secondary:#ebe6ef" style="width:24px;height:24px"></lord-icon>
+          Iniciar Consulta Agora
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Nova Seção: Política de Privacidade -->
 <section id="politica-privacidade" class="section privacy-policy-section">
     <div class="wrap">
-        <h2>Política de Privacidade – Psiquê Patinhas</h2>
+        <h2 class="h2">Política de Privacidade – Psiquê Patinhas</h2>
         <p>Última atualização: 21 de maio de 2026</p>
-
         <p>A Psiquê Patinhas valoriza a sua privacidade e está comprometida com a proteção dos seus dados. Esta Política de Privacidade explica como coletamos, utilizamos, armazenamos e protegemos as informações fornecidas pelos usuários.</p>
 
         <h3>1. Quem Somos</h3>
@@ -611,7 +640,7 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
         <div class="contact-info">
             <p>Para dúvidas, solicitações relacionadas à privacidade ou exercício de direitos previstos na LGPD, entre em contato pelos canais oficiais da Psiquê Patinhas. 🐾</p>
             <p>E-mail: <a href="mailto:contato@psiquepatinhas.com.br">contato@psiquepatinhas.com.br</a></p>
-            <p>WhatsApp: <a href="https://wa.me/5517936302873" target="_blank">(17) 93630-2873</a></p>
+            <p>WhatsApp: <a href="https://wa.me/5514999253707" target="_blank">(17) 93630-2873</a></p>
         </div>
     </div>
 </section>
@@ -625,19 +654,19 @@ footer{border-top:1px solid #ffffff22;background:#0b0b0b}
     </div>
     <div>
       <h4>Contato</h4>
-      <small>📞 <a href="tel:+5514996649899">(14) 99664-9899</a></small><br>
+      <small>📞 <a href="tel:+5514999253707">(14) 99925-3707</a></small><br>
       <small>✉️ <a href="mailto:contato@psiquepatinhas.com"> psiquepatinhas@gmail.com</a></small><br>
       <small>📍 Atendimento online</small>
     </div>
     <div>
       <h4>Serviço</h4>
-      <small>Consulta acessivel
+      <small>Consulta acessivel<br>
       </small><br>
       <small>Orientação profissional</small><br>
       <small>Atendimento humanizado</small><br>
       <small>Resposta imediata</small><br><br>
       <a class="btn cta-primary magnetic radial"
-         href="https://wa.me/5514996649899?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20a%20consulta%20comportamental%20da%20Psiqu%C3%AA%20Patinhas."
+         href="https://wa.me/5514999253707?text=Olá!%20Gostaria%20de%20iniciar%20a%20consulta%20comportamental%20da%20Psiquê%20Patinhas."
          target="_blank" aria-label="Iniciar consulta (rodapé)">Iniciar Consulta</a>
     </div>
   </div>
@@ -793,7 +822,7 @@ document.querySelectorAll('.btn').forEach(btn=>{
     setTimeout(()=>r.remove(), 600);
     if (!IS_MOBILE && !IS_TABLET) {
       new mojs.Burst({ left: e.pageX, top: e.pageY, radius: {20:80}, count:12,
-        children:{shape:'circle', fill:'#d6c279', duration:700, easing:'quad.out'} }).replay();
+        children:{shape:'circle', fill:'#d6c279', opacity:{1:0}, duration:900} }).replay();
     }
     anime({targets:btn,scale:[.98,1],duration:320,easing:'easeOutElastic(1,.6)'});
   });
@@ -1020,7 +1049,6 @@ else {
       const ix=i*3;
       a[ix+1] += (Math.sin(t*spd[i] + a[ix]*.03)*.02) + scrollBoost*.012;
       a[ix+0] += Math.cos(t*spd[i] + a[ix+2]*.02)*.006;
-      a[ix+2] += Math.sin(t*spd[i] + a[ix+1]*.02)*.004;
     }
     geom.attributes.position.needsUpdate = true;
     scrollBoost *= .92;
